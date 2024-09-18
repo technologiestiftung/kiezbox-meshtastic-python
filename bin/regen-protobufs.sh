@@ -37,7 +37,7 @@ $SEDCMD 's/^package meshtastic;/package meshtastic.protobuf;/' "${INDIR}/"*.prot
 $SEDCMD 's/^import "meshtastic\//import "meshtastic\/protobuf\//' "${INDIR}/"*.proto
 
 # Generate the python files
-./nanopb-0.4.8/generator-bin/protoc -I=$TMPDIR/in --python_out "${OUTDIR}" "--mypy_out=${PYIDIR}" $INDIR/*.proto
+../meshtastic-firmware/nanopb-0.4.8/generator-bin/protoc -I=$TMPDIR/in --python_out "${OUTDIR}" "--mypy_out=${PYIDIR}" $INDIR/*.proto
 
 # Change "from meshtastic.protobuf import" to "from . import"
 $SEDCMD 's/^from meshtastic.protobuf import/from . import/' "${OUTDIR}"/meshtastic/protobuf/*pb2*.py[i]
