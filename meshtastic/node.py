@@ -203,6 +203,10 @@ class Node:
             p.set_module_config.remote_hardware.CopyFrom(
                 self.moduleConfig.remote_hardware
             )
+        elif config_name == "kiezbox_control":
+            p.set_module_config.kiezbox_control.CopyFrom(
+                self.moduleConfig.kiezbox_control
+            )
         elif config_name == "neighbor_info":
             p.set_module_config.neighbor_info.CopyFrom(self.moduleConfig.neighbor_info)
         elif config_name == "detection_sensor":

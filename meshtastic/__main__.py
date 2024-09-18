@@ -531,6 +531,45 @@ def onConnected(interface):
                         rhc.watchGPIOs(args.dest, bitmask)
                         time.sleep(1)
 
+        if args.kb_wrb or args.kb_rd or args.kb_watch:
+            if args.dest == BROADCAST_ADDR:
+                meshtastic.util.our_exit("Warning: Must use a destination node ID.")
+            else:
+                rhc = kiezbox_control.KiezboxControlClient(interface)
+
+                if args.gpio_wrb:
+                    bitmask = 0
+                    bitval = 0
+                    for wrpair in args.gpio_wrb or []:
+                        bitmask |= 1 << int(wrpair[0])
+                        bitval |= int(wrpair[1]) << int(wrpair[0])
+                    print(
+                        f"Writing GPIO mask 0x{bitmask:x} with value 0x{bitval:x} to {args.dest}"
+                    )
+                    rhc.writeGPIOs(args.dest, bitmask, bitval)
+                    closeNow = True
+
+                if args.gpio_rd:
+                    bitmask = int(args.gpio_rd, 16)
+                    print(f"Reading GPIO mask 0x{bitmask:x} from {args.dest}")
+                    interface.mask = bitmask
+                    rhc.readGPIOs(args.dest, bitmask, None)
+                    # wait up to X seconds for a response
+                    for _ in range(10):
+                        time.sleep(1)
+                        if interface.gotResponse:
+                            break
+                    logging.debug(f"end of gpio_rd")
+
+                if args.gpio_watch:
+                    bitmask = int(args.gpio_watch, 16)
+                    print(
+                        f"Watching GPIO mask 0x{bitmask:x} from {args.dest}. Press ctrl-c to exit"
+                    )
+                    while True:
+                        rhc.watchGPIOs(args.dest, bitmask)
+                        time.sleep(1)
+
         # handle settings
         if args.set:
             closeNow = True
@@ -1725,6 +1764,22 @@ def initParser():
 
     remoteHardwareArgs.add_argument(
         "--gpio-watch", help="Start watching a GPIO mask for changes (ex: '0x10')"
+    )
+
+    kiezboxControlArgs = parser.add_argument_group(
+        "Kiezbo Control", "Arguments related to the Kiezbox Control module"
+    )
+
+    kiezboxControlArgs.add_argument(
+        "--kb-wrb", nargs=2, help="Set a particular GPIO # to 1 or 0", action="append"
+    )
+
+    kiezboxControlArgs.add_argument(
+        "--kb-rd", help="Read from a GPIO mask (ex: '0x10')"
+    )
+
+    kiezboxControlArgs.add_argument(
+        "--kb-watch", help="Start watching a GPIO mask for changes (ex: '0x10')"
     )
 
     have_tunnel = platform.system() == "Linux"

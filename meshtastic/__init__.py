@@ -95,6 +95,7 @@ from .protobuf import (
     paxcount_pb2,
     portnums_pb2,
     remote_hardware_pb2,
+    kiezbox_control_pb2,
     storeforward_pb2,
     telemetry_pb2,
     powermon_pb2
@@ -243,6 +244,9 @@ protocols = {
     ),
     portnums_pb2.PortNum.REMOTE_HARDWARE_APP: KnownProtocol(
         "remotehw", remote_hardware_pb2.HardwareMessage
+    ),
+    portnums_pb2.PortNum.KIEZBOX_CONTROL_APP: KnownProtocol(
+        "kiezboxctrl", kiezbox_control_pb2.KiezboxMessage
     ),
     portnums_pb2.PortNum.SIMULATOR_APP: KnownProtocol("simulator", mesh_pb2.Compressed),
     portnums_pb2.PortNum.TRACEROUTE_APP: KnownProtocol(

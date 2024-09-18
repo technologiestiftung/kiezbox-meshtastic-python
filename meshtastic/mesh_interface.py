@@ -1127,6 +1127,10 @@ class MeshInterface:  # pylint: disable=R0902
                 self.localNode.moduleConfig.remote_hardware.CopyFrom(
                     fromRadio.moduleConfig.remote_hardware
                 )
+            elif fromRadio.moduleConfig.HasField("kiezbox_control"):
+                self.localNode.moduleConfig.kiezbox_control.CopyFrom(
+                    fromRadio.moduleConfig.kiezbox_control
+                )
             elif fromRadio.moduleConfig.HasField("neighbor_info"):
                 self.localNode.moduleConfig.neighbor_info.CopyFrom(
                     fromRadio.moduleConfig.neighbor_info
