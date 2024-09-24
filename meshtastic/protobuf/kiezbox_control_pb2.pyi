@@ -25,7 +25,9 @@ class KiezboxMessage(google.protobuf.message.Message):
     class KiezboxStatus(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        KB_ID_FIELD_NUMBER: builtins.int
+        BOX_ID_FIELD_NUMBER: builtins.int
+        DIST_ID_FIELD_NUMBER: builtins.int
+        ROUTER_POWERED_FIELD_NUMBER: builtins.int
         UNIX_TIME_FIELD_NUMBER: builtins.int
         TEMPERATURE_OUT_FIELD_NUMBER: builtins.int
         TEMPERATURE_IN_FIELD_NUMBER: builtins.int
@@ -37,8 +39,11 @@ class KiezboxMessage(google.protobuf.message.Message):
         BATTERY_VOLTAGE_FIELD_NUMBER: builtins.int
         BATTERY_CURRENT_FIELD_NUMBER: builtins.int
         TEMPERATURE_RTC_FIELD_NUMBER: builtins.int
-        kb_id: builtins.int
-        """only 16 bit used"""
+        box_id: builtins.int
+        """only 8 bit used"""
+        dist_id: builtins.int
+        """only 8 bit used"""
+        router_powered: builtins.bool
         unix_time: builtins.int
         """seconds since unix epoch"""
         temperature_out: builtins.int
@@ -64,7 +69,9 @@ class KiezboxMessage(google.protobuf.message.Message):
         def __init__(
             self,
             *,
-            kb_id: builtins.int = ...,
+            box_id: builtins.int = ...,
+            dist_id: builtins.int = ...,
+            router_powered: builtins.bool = ...,
             unix_time: builtins.int = ...,
             temperature_out: builtins.int = ...,
             temperature_in: builtins.int = ...,
@@ -77,7 +84,7 @@ class KiezboxMessage(google.protobuf.message.Message):
             battery_current: builtins.int = ...,
             temperature_rtc: builtins.int = ...,
         ) -> None: ...
-        def ClearField(self, field_name: typing.Literal["battery_current", b"battery_current", "battery_voltage", b"battery_voltage", "humidity_in", b"humidity_in", "kb_id", b"kb_id", "solar_energy_day", b"solar_energy_day", "solar_energy_total", b"solar_energy_total", "solar_power", b"solar_power", "solar_voltage", b"solar_voltage", "temperature_in", b"temperature_in", "temperature_out", b"temperature_out", "temperature_rtc", b"temperature_rtc", "unix_time", b"unix_time"]) -> None: ...
+        def ClearField(self, field_name: typing.Literal["battery_current", b"battery_current", "battery_voltage", b"battery_voltage", "box_id", b"box_id", "dist_id", b"dist_id", "humidity_in", b"humidity_in", "router_powered", b"router_powered", "solar_energy_day", b"solar_energy_day", "solar_energy_total", b"solar_energy_total", "solar_power", b"solar_power", "solar_voltage", b"solar_voltage", "temperature_in", b"temperature_in", "temperature_out", b"temperature_out", "temperature_rtc", b"temperature_rtc", "unix_time", b"unix_time"]) -> None: ...
 
     STATUS_FIELD_NUMBER: builtins.int
     @property
