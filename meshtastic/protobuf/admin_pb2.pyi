@@ -165,7 +165,6 @@ class AdminMessage(google.protobuf.message.Message):
         REMOTEHARDWARE_CONFIG: AdminMessage._ModuleConfigType.ValueType  # 8
         """
         TODO: REPLACE
-        TODO: DO I NEED THIS FOR KIEZBOX? See also other remote hardware stuff in this file
         """
         NEIGHBORINFO_CONFIG: AdminMessage._ModuleConfigType.ValueType  # 9
         """
@@ -182,6 +181,11 @@ class AdminMessage(google.protobuf.message.Message):
         PAXCOUNTER_CONFIG: AdminMessage._ModuleConfigType.ValueType  # 12
         """
         TODO: REPLACE
+        """
+        KIEZBOXCONTROL_CONFIG: AdminMessage._ModuleConfigType.ValueType  # 13
+        """
+        TODO: REPLACE
+        TODO: Test if this works as expected for new values
         """
 
     class ModuleConfigType(_ModuleConfigType, metaclass=_ModuleConfigTypeEnumTypeWrapper):
@@ -224,7 +228,6 @@ class AdminMessage(google.protobuf.message.Message):
     REMOTEHARDWARE_CONFIG: AdminMessage.ModuleConfigType.ValueType  # 8
     """
     TODO: REPLACE
-    TODO: DO I NEED THIS FOR KIEZBOX? See also other remote hardware stuff in this file
     """
     NEIGHBORINFO_CONFIG: AdminMessage.ModuleConfigType.ValueType  # 9
     """
@@ -241,6 +244,11 @@ class AdminMessage(google.protobuf.message.Message):
     PAXCOUNTER_CONFIG: AdminMessage.ModuleConfigType.ValueType  # 12
     """
     TODO: REPLACE
+    """
+    KIEZBOXCONTROL_CONFIG: AdminMessage.ModuleConfigType.ValueType  # 13
+    """
+    TODO: REPLACE
+    TODO: Test if this works as expected for new values
     """
 
     SESSION_PASSKEY_FIELD_NUMBER: builtins.int
