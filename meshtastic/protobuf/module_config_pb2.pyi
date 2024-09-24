@@ -224,30 +224,22 @@ class ModuleConfig(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         ENABLED_FIELD_NUMBER: builtins.int
-        ALLOW_UNDEFINED_PIN_ACCESS_FIELD_NUMBER: builtins.int
-        AVAILABLE_PINS_FIELD_NUMBER: builtins.int
+        STATUS_INTERVAL_FIELD_NUMBER: builtins.int
         enabled: builtins.bool
         """
         Whether the Module is enabled
         """
-        allow_undefined_pin_access: builtins.bool
+        status_interval: builtins.int
         """
-        Whether the Module allows consumers to read / write to pins not defined in available_pins
+        Sets the next (inteval) at which a status should be send
         """
-        @property
-        def available_pins(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___RemoteHardwarePin]:
-            """
-            Exposes the available pins to the mesh for reading and writing
-            """
-
         def __init__(
             self,
             *,
             enabled: builtins.bool = ...,
-            allow_undefined_pin_access: builtins.bool = ...,
-            available_pins: collections.abc.Iterable[global___RemoteHardwarePin] | None = ...,
+            status_interval: builtins.int = ...,
         ) -> None: ...
-        def ClearField(self, field_name: typing.Literal["allow_undefined_pin_access", b"allow_undefined_pin_access", "available_pins", b"available_pins", "enabled", b"enabled"]) -> None: ...
+        def ClearField(self, field_name: typing.Literal["enabled", b"enabled", "status_interval", b"status_interval"]) -> None: ...
 
     @typing.final
     class NeighborInfoConfig(google.protobuf.message.Message):
