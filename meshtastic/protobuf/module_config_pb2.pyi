@@ -225,6 +225,10 @@ class ModuleConfig(google.protobuf.message.Message):
 
         ENABLED_FIELD_NUMBER: builtins.int
         STATUS_INTERVAL_FIELD_NUMBER: builtins.int
+        POWER_PIN_OVERRIDE_FIELD_NUMBER: builtins.int
+        BOX_ID_FIELD_NUMBER: builtins.int
+        DIST_ID_FIELD_NUMBER: builtins.int
+        ROUTER_POWER_FIELD_NUMBER: builtins.int
         enabled: builtins.bool
         """
         Whether the Module is enabled
@@ -233,13 +237,33 @@ class ModuleConfig(google.protobuf.message.Message):
         """
         Sets the next (inteval) at which a status should be send
         """
+        power_pin_override: builtins.int
+        """
+        Override the default power pin
+        """
+        box_id: builtins.int
+        """
+        ID of the kiexbox
+        """
+        dist_id: builtins.int
+        """
+        ID of the district
+        """
+        router_power: builtins.bool
+        """
+        Uniq ID of the kiexbox
+        """
         def __init__(
             self,
             *,
             enabled: builtins.bool = ...,
             status_interval: builtins.int = ...,
+            power_pin_override: builtins.int = ...,
+            box_id: builtins.int = ...,
+            dist_id: builtins.int = ...,
+            router_power: builtins.bool = ...,
         ) -> None: ...
-        def ClearField(self, field_name: typing.Literal["enabled", b"enabled", "status_interval", b"status_interval"]) -> None: ...
+        def ClearField(self, field_name: typing.Literal["box_id", b"box_id", "dist_id", b"dist_id", "enabled", b"enabled", "power_pin_override", b"power_pin_override", "router_power", b"router_power", "status_interval", b"status_interval"]) -> None: ...
 
     @typing.final
     class NeighborInfoConfig(google.protobuf.message.Message):
