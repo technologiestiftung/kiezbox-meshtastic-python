@@ -5,98 +5,21 @@ isort:skip_file
 
 import builtins
 import google.protobuf.descriptor
-import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
-import sys
 import typing
-
-if sys.version_info >= (3, 10):
-    import typing as typing_extensions
-else:
-    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 @typing.final
 class KiezboxMessage(google.protobuf.message.Message):
     """
-    An example app to show off the module system. This message is used for
+    This message is used for
     KIEZBOX_CONTROL_APP PortNums.
-    Also provides easy remote access to any GPIO.
-    In the future other remote hardware operations can be added based on user interest
-    (i.e. serial output, spi/i2c input/output).
-    FIXME - currently this feature is turned on by default which is dangerous
-    because no security yet (beyond the channel mechanism).
-    It should be off by default and then protected based on some TBD mechanism
-    (a special channel once multichannel support is included?)
+
+    TODO: Add other message types/features
     """
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    class _Type:
-        ValueType = typing.NewType("ValueType", builtins.int)
-        V: typing_extensions.TypeAlias = ValueType
-
-    class _TypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[KiezboxMessage._Type.ValueType], builtins.type):
-        DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
-        UNSET: KiezboxMessage._Type.ValueType  # 0
-        """
-        Unset/unused
-        """
-        WRITE_GPIOS: KiezboxMessage._Type.ValueType  # 1
-        """
-        Set gpio gpios based on gpio_mask/gpio_value
-        """
-        WATCH_GPIOS: KiezboxMessage._Type.ValueType  # 2
-        """
-        We are now interested in watching the gpio_mask gpios.
-        If the selected gpios change, please broadcast GPIOS_CHANGED.
-        Will implicitly change the gpios requested to be INPUT gpios.
-        """
-        GPIOS_CHANGED: KiezboxMessage._Type.ValueType  # 3
-        """
-        The gpios listed in gpio_mask have changed, the new values are listed in gpio_value
-        """
-        READ_GPIOS: KiezboxMessage._Type.ValueType  # 4
-        """
-        Read the gpios specified in gpio_mask, send back a READ_GPIOS_REPLY reply with gpio_value populated
-        """
-        READ_GPIOS_REPLY: KiezboxMessage._Type.ValueType  # 5
-        """
-        A reply to READ_GPIOS. gpio_mask and gpio_value will be populated
-        """
-
-    class Type(_Type, metaclass=_TypeEnumTypeWrapper):
-        """
-        TODO: REPLACE
-        """
-
-    UNSET: KiezboxMessage.Type.ValueType  # 0
-    """
-    Unset/unused
-    """
-    WRITE_GPIOS: KiezboxMessage.Type.ValueType  # 1
-    """
-    Set gpio gpios based on gpio_mask/gpio_value
-    """
-    WATCH_GPIOS: KiezboxMessage.Type.ValueType  # 2
-    """
-    We are now interested in watching the gpio_mask gpios.
-    If the selected gpios change, please broadcast GPIOS_CHANGED.
-    Will implicitly change the gpios requested to be INPUT gpios.
-    """
-    GPIOS_CHANGED: KiezboxMessage.Type.ValueType  # 3
-    """
-    The gpios listed in gpio_mask have changed, the new values are listed in gpio_value
-    """
-    READ_GPIOS: KiezboxMessage.Type.ValueType  # 4
-    """
-    Read the gpios specified in gpio_mask, send back a READ_GPIOS_REPLY reply with gpio_value populated
-    """
-    READ_GPIOS_REPLY: KiezboxMessage.Type.ValueType  # 5
-    """
-    A reply to READ_GPIOS. gpio_mask and gpio_value will be populated
-    """
 
     @typing.final
     class KiezboxStatus(google.protobuf.message.Message):
@@ -156,35 +79,16 @@ class KiezboxMessage(google.protobuf.message.Message):
         ) -> None: ...
         def ClearField(self, field_name: typing.Literal["battery_current", b"battery_current", "battery_voltage", b"battery_voltage", "humidity_in", b"humidity_in", "kb_id", b"kb_id", "solar_energy_day", b"solar_energy_day", "solar_energy_total", b"solar_energy_total", "solar_power", b"solar_power", "solar_voltage", b"solar_voltage", "temperature_in", b"temperature_in", "temperature_out", b"temperature_out", "temperature_rtc", b"temperature_rtc", "unix_time", b"unix_time"]) -> None: ...
 
-    TYPE_FIELD_NUMBER: builtins.int
-    GPIO_MASK_FIELD_NUMBER: builtins.int
-    GPIO_VALUE_FIELD_NUMBER: builtins.int
     STATUS_FIELD_NUMBER: builtins.int
-    type: global___KiezboxMessage.Type.ValueType
-    """
-    What type of HardwareMessage is this?
-    """
-    gpio_mask: builtins.int
-    """
-    What gpios are we changing. Not used for all MessageTypes, see MessageType for details
-    """
-    gpio_value: builtins.int
-    """
-    For gpios that were listed in gpio_mask as valid, what are the signal levels for those gpios.
-    Not used for all MessageTypes, see MessageType for details
-    """
     @property
     def status(self) -> global___KiezboxMessage.KiezboxStatus: ...
     def __init__(
         self,
         *,
-        type: global___KiezboxMessage.Type.ValueType = ...,
-        gpio_mask: builtins.int = ...,
-        gpio_value: builtins.int = ...,
         status: global___KiezboxMessage.KiezboxStatus | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["_status", b"_status", "status", b"status"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["_status", b"_status", "gpio_mask", b"gpio_mask", "gpio_value", b"gpio_value", "status", b"status", "type", b"type"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["_status", b"_status", "status", b"status"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["_status", b"_status"]) -> typing.Literal["status"] | None: ...
 
 global___KiezboxMessage = KiezboxMessage
