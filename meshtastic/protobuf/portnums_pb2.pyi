@@ -186,6 +186,12 @@ class _PortNumEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTy
     ATAK Forwarder Module https://github.com/paulmandal/atak-forwarder
     ENCODING: libcotshrink
     """
+    KIEZBOX_CONTROL_APP: _PortNum.ValueType  # 258
+    """
+    Reserved for built-in GPIO/example app.
+    See remote_hardware.proto/HardwareMessage for details on the message sent/received to this port number
+    ENCODING: Protobuf
+    """
     MAX: _PortNum.ValueType  # 511
     """
     Currently we limit port nums to no higher than this value
@@ -370,6 +376,12 @@ ATAK_FORWARDER: PortNum.ValueType  # 257
 """
 ATAK Forwarder Module https://github.com/paulmandal/atak-forwarder
 ENCODING: libcotshrink
+"""
+KIEZBOX_CONTROL_APP: PortNum.ValueType  # 258
+"""
+Reserved for built-in GPIO/example app.
+See remote_hardware.proto/HardwareMessage for details on the message sent/received to this port number
+ENCODING: Protobuf
 """
 MAX: PortNum.ValueType  # 511
 """

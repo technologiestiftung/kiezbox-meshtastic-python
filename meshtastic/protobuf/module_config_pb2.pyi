@@ -216,6 +216,40 @@ class ModuleConfig(google.protobuf.message.Message):
         def ClearField(self, field_name: typing.Literal["allow_undefined_pin_access", b"allow_undefined_pin_access", "available_pins", b"available_pins", "enabled", b"enabled"]) -> None: ...
 
     @typing.final
+    class KiezboxControlConfig(google.protobuf.message.Message):
+        """
+        KiezboxControlModule Config
+        """
+
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+        ENABLED_FIELD_NUMBER: builtins.int
+        ALLOW_UNDEFINED_PIN_ACCESS_FIELD_NUMBER: builtins.int
+        AVAILABLE_PINS_FIELD_NUMBER: builtins.int
+        enabled: builtins.bool
+        """
+        Whether the Module is enabled
+        """
+        allow_undefined_pin_access: builtins.bool
+        """
+        Whether the Module allows consumers to read / write to pins not defined in available_pins
+        """
+        @property
+        def available_pins(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___RemoteHardwarePin]:
+            """
+            Exposes the available pins to the mesh for reading and writing
+            """
+
+        def __init__(
+            self,
+            *,
+            enabled: builtins.bool = ...,
+            allow_undefined_pin_access: builtins.bool = ...,
+            available_pins: collections.abc.Iterable[global___RemoteHardwarePin] | None = ...,
+        ) -> None: ...
+        def ClearField(self, field_name: typing.Literal["allow_undefined_pin_access", b"allow_undefined_pin_access", "available_pins", b"available_pins", "enabled", b"enabled"]) -> None: ...
+
+    @typing.final
     class NeighborInfoConfig(google.protobuf.message.Message):
         """
         NeighborInfoModule Config
@@ -1074,6 +1108,7 @@ class ModuleConfig(google.protobuf.message.Message):
     AMBIENT_LIGHTING_FIELD_NUMBER: builtins.int
     DETECTION_SENSOR_FIELD_NUMBER: builtins.int
     PAXCOUNTER_FIELD_NUMBER: builtins.int
+    KIEZBOX_CONTROL_FIELD_NUMBER: builtins.int
     @property
     def mqtt(self) -> global___ModuleConfig.MQTTConfig:
         """
@@ -1152,6 +1187,12 @@ class ModuleConfig(google.protobuf.message.Message):
         TODO: REPLACE
         """
 
+    @property
+    def kiezbox_control(self) -> global___ModuleConfig.KiezboxControlConfig:
+        """
+        TODO: REPLACE
+        """
+
     def __init__(
         self,
         *,
@@ -1168,10 +1209,11 @@ class ModuleConfig(google.protobuf.message.Message):
         ambient_lighting: global___ModuleConfig.AmbientLightingConfig | None = ...,
         detection_sensor: global___ModuleConfig.DetectionSensorConfig | None = ...,
         paxcounter: global___ModuleConfig.PaxcounterConfig | None = ...,
+        kiezbox_control: global___ModuleConfig.KiezboxControlConfig | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["ambient_lighting", b"ambient_lighting", "audio", b"audio", "canned_message", b"canned_message", "detection_sensor", b"detection_sensor", "external_notification", b"external_notification", "mqtt", b"mqtt", "neighbor_info", b"neighbor_info", "paxcounter", b"paxcounter", "payload_variant", b"payload_variant", "range_test", b"range_test", "remote_hardware", b"remote_hardware", "serial", b"serial", "store_forward", b"store_forward", "telemetry", b"telemetry"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["ambient_lighting", b"ambient_lighting", "audio", b"audio", "canned_message", b"canned_message", "detection_sensor", b"detection_sensor", "external_notification", b"external_notification", "mqtt", b"mqtt", "neighbor_info", b"neighbor_info", "paxcounter", b"paxcounter", "payload_variant", b"payload_variant", "range_test", b"range_test", "remote_hardware", b"remote_hardware", "serial", b"serial", "store_forward", b"store_forward", "telemetry", b"telemetry"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing.Literal["payload_variant", b"payload_variant"]) -> typing.Literal["mqtt", "serial", "external_notification", "store_forward", "range_test", "telemetry", "canned_message", "audio", "remote_hardware", "neighbor_info", "ambient_lighting", "detection_sensor", "paxcounter"] | None: ...
+    def HasField(self, field_name: typing.Literal["ambient_lighting", b"ambient_lighting", "audio", b"audio", "canned_message", b"canned_message", "detection_sensor", b"detection_sensor", "external_notification", b"external_notification", "kiezbox_control", b"kiezbox_control", "mqtt", b"mqtt", "neighbor_info", b"neighbor_info", "paxcounter", b"paxcounter", "payload_variant", b"payload_variant", "range_test", b"range_test", "remote_hardware", b"remote_hardware", "serial", b"serial", "store_forward", b"store_forward", "telemetry", b"telemetry"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["ambient_lighting", b"ambient_lighting", "audio", b"audio", "canned_message", b"canned_message", "detection_sensor", b"detection_sensor", "external_notification", b"external_notification", "kiezbox_control", b"kiezbox_control", "mqtt", b"mqtt", "neighbor_info", b"neighbor_info", "paxcounter", b"paxcounter", "payload_variant", b"payload_variant", "range_test", b"range_test", "remote_hardware", b"remote_hardware", "serial", b"serial", "store_forward", b"store_forward", "telemetry", b"telemetry"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing.Literal["payload_variant", b"payload_variant"]) -> typing.Literal["mqtt", "serial", "external_notification", "store_forward", "range_test", "telemetry", "canned_message", "audio", "remote_hardware", "neighbor_info", "ambient_lighting", "detection_sensor", "paxcounter", "kiezbox_control"] | None: ...
 
 global___ModuleConfig = ModuleConfig
 

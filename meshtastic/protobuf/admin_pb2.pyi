@@ -156,6 +156,7 @@ class AdminMessage(google.protobuf.message.Message):
         REMOTEHARDWARE_CONFIG: AdminMessage._ModuleConfigType.ValueType  # 8
         """
         TODO: REPLACE
+        TODO: DO I NEED THIS FOR KIEZBOX? See also other remote hardware stuff in this file
         """
         NEIGHBORINFO_CONFIG: AdminMessage._ModuleConfigType.ValueType  # 9
         """
@@ -214,6 +215,7 @@ class AdminMessage(google.protobuf.message.Message):
     REMOTEHARDWARE_CONFIG: AdminMessage.ModuleConfigType.ValueType  # 8
     """
     TODO: REPLACE
+    TODO: DO I NEED THIS FOR KIEZBOX? See also other remote hardware stuff in this file
     """
     NEIGHBORINFO_CONFIG: AdminMessage.ModuleConfigType.ValueType  # 9
     """
