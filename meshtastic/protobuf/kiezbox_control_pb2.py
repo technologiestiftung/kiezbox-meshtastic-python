@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)meshtastic/protobuf/kiezbox_control.proto\x12\x13meshtastic.protobuf\"\xb4\x03\n\x0eKiezboxMessage\x12\x46\n\x06status\x18\x04 \x01(\x0b\x32\x31.meshtastic.protobuf.KiezboxMessage.KiezboxStatusH\x00\x88\x01\x01\x1a\xce\x02\n\rKiezboxStatus\x12\x0e\n\x06\x62ox_id\x18\x01 \x01(\r\x12\x0f\n\x07\x64ist_id\x18\x02 \x01(\r\x12\x16\n\x0erouter_powered\x18\x03 \x01(\x08\x12\x11\n\tunix_time\x18\x04 \x01(\x03\x12\x17\n\x0ftemperature_out\x18\x05 \x01(\x05\x12\x16\n\x0etemperature_in\x18\x06 \x01(\x05\x12\x13\n\x0bhumidity_in\x18\x07 \x01(\x05\x12\x15\n\rsolar_voltage\x18\x08 \x01(\x05\x12\x13\n\x0bsolar_power\x18\t \x01(\x05\x12\x18\n\x10solar_energy_day\x18\n \x01(\x05\x12\x1a\n\x12solar_energy_total\x18\x0b \x01(\x05\x12\x17\n\x0f\x62\x61ttery_voltage\x18\x0c \x01(\x05\x12\x17\n\x0f\x62\x61ttery_current\x18\r \x01(\x05\x12\x17\n\x0ftemperature_rtc\x18\x0e \x01(\x05\x42\t\n\x07_statusBc\n\x13\x63om.geeksville.meshB\x0eKiezboxControlZ\"github.com/meshtastic/go/generated\xaa\x02\x14Meshtastic.Protobufs\xba\x02\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)meshtastic/protobuf/kiezbox_control.proto\x12\x13meshtastic.protobuf\"\x95\x0c\n\x0eKiezboxMessage\x12?\n\x06update\x18\x04 \x01(\x0b\x32*.meshtastic.protobuf.KiezboxMessage.UpdateH\x00\x88\x01\x01\x12\x41\n\x07\x63ontrol\x18\x05 \x01(\x0b\x32+.meshtastic.protobuf.KiezboxMessage.ControlH\x01\x88\x01\x01\x1a\'\n\x04Meta\x12\x0e\n\x06\x62ox_id\x18\x01 \x01(\r\x12\x0f\n\x07\x64ist_id\x18\x02 \x01(\r\x1a}\n\x07\x43ontrol\x12\x36\n\x04mode\x18\x01 \x01(\x0e\x32(.meshtastic.protobuf.KiezboxMessage.Mode\x12:\n\x06router\x18\x02 \x01(\x0b\x32*.meshtastic.protobuf.KiezboxMessage.Router\x1a\xe5\x01\n\x06Update\x12\x36\n\x04meta\x18\x01 \x01(\x0b\x32(.meshtastic.protobuf.KiezboxMessage.Meta\x12\x11\n\tunix_time\x18\x02 \x01(\x03\x12;\n\x04\x63ore\x18\x03 \x01(\x0b\x32(.meshtastic.protobuf.KiezboxMessage.CoreH\x00\x88\x01\x01\x12?\n\x06sensor\x18\x04 \x01(\x0b\x32*.meshtastic.protobuf.KiezboxMessage.SensorH\x01\x88\x01\x01\x42\x07\n\x05_coreB\t\n\x07_sensor\x1a\xba\x01\n\x04\x43ore\x12\x36\n\x04mode\x18\x01 \x01(\x0e\x32(.meshtastic.protobuf.KiezboxMessage.Mode\x12:\n\x06router\x18\x02 \x01(\x0b\x32*.meshtastic.protobuf.KiezboxMessage.Router\x12>\n\x06values\x18\x03 \x01(\x0b\x32..meshtastic.protobuf.KiezboxMessage.CoreValues\x1a_\n\x06Router\x12\x0f\n\x07powered\x18\x01 \x01(\x08\x12\x17\n\nsw_version\x18\x02 \x01(\tH\x00\x88\x01\x01\x12\x12\n\x05model\x18\x03 \x01(\tH\x01\x88\x01\x01\x42\r\n\x0b_sw_versionB\x08\n\x06_model\x1a\xe7\x01\n\nCoreValues\x12\x10\n\x08temp_out\x18\x01 \x01(\x05\x12\x0f\n\x07temp_in\x18\x02 \x01(\x05\x12\x10\n\x08humid_in\x18\x03 \x01(\x05\x12\x15\n\rsolar_voltage\x18\x04 \x01(\x05\x12\x13\n\x0bsolar_power\x18\x05 \x01(\x05\x12\x18\n\x10solar_energy_day\x18\x06 \x01(\x05\x12\x1a\n\x12solar_energy_total\x18\x07 \x01(\x05\x12\x17\n\x0f\x62\x61ttery_voltage\x18\x08 \x01(\x05\x12\x17\n\x0f\x62\x61ttery_current\x18\t \x01(\x05\x12\x10\n\x08temp_rtc\x18\n \x01(\x05\x1a[\n\x06Sensor\x12\x0f\n\x07sens_id\x18\x01 \x01(\r\x12@\n\x06values\x18\x02 \x01(\x0b\x32\x30.meshtastic.protobuf.KiezboxMessage.SensorValues\x1a\xbe\x02\n\x0cSensorValues\x12\x16\n\ttemp_main\x18\x01 \x01(\rH\x00\x88\x01\x01\x12\x17\n\nhumid_main\x18\x02 \x01(\rH\x01\x88\x01\x01\x12\x15\n\x08pressure\x18\x03 \x01(\rH\x02\x88\x01\x01\x12\x18\n\x0b\x61ir_quality\x18\x04 \x01(\rH\x03\x88\x01\x01\x12\x18\n\x0bpart_pm_2_5\x18\x05 \x01(\rH\x04\x88\x01\x01\x12\x17\n\npart_pm_10\x18\x06 \x01(\rH\x05\x88\x01\x01\x12\x12\n\x05noise\x18\x07 \x01(\rH\x06\x88\x01\x01\x12\x15\n\x08temp_rtc\x18\x08 \x01(\rH\x07\x88\x01\x01\x42\x0c\n\n_temp_mainB\r\n\x0b_humid_mainB\x0b\n\t_pressureB\x0e\n\x0c_air_qualityB\x0e\n\x0c_part_pm_2_5B\r\n\x0b_part_pm_10B\x08\n\x06_noiseB\x0b\n\t_temp_rtc\"2\n\x04Mode\x12\x0f\n\x0bmaintenance\x10\x00\x12\n\n\x06normal\x10\x01\x12\r\n\temergency\x10\x02\x42\t\n\x07_updateB\n\n\x08_controlBc\n\x13\x63om.geeksville.meshB\x0eKiezboxControlZ\"github.com/meshtastic/go/generated\xaa\x02\x14Meshtastic.Protobufs\xba\x02\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -22,7 +22,23 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\023com.geeksville.meshB\016KiezboxControlZ\"github.com/meshtastic/go/generated\252\002\024Meshtastic.Protobufs\272\002\000'
   _globals['_KIEZBOXMESSAGE']._serialized_start=67
-  _globals['_KIEZBOXMESSAGE']._serialized_end=503
-  _globals['_KIEZBOXMESSAGE_KIEZBOXSTATUS']._serialized_start=158
-  _globals['_KIEZBOXMESSAGE_KIEZBOXSTATUS']._serialized_end=492
+  _globals['_KIEZBOXMESSAGE']._serialized_end=1624
+  _globals['_KIEZBOXMESSAGE_META']._serialized_start=217
+  _globals['_KIEZBOXMESSAGE_META']._serialized_end=256
+  _globals['_KIEZBOXMESSAGE_CONTROL']._serialized_start=258
+  _globals['_KIEZBOXMESSAGE_CONTROL']._serialized_end=383
+  _globals['_KIEZBOXMESSAGE_UPDATE']._serialized_start=386
+  _globals['_KIEZBOXMESSAGE_UPDATE']._serialized_end=615
+  _globals['_KIEZBOXMESSAGE_CORE']._serialized_start=618
+  _globals['_KIEZBOXMESSAGE_CORE']._serialized_end=804
+  _globals['_KIEZBOXMESSAGE_ROUTER']._serialized_start=806
+  _globals['_KIEZBOXMESSAGE_ROUTER']._serialized_end=901
+  _globals['_KIEZBOXMESSAGE_COREVALUES']._serialized_start=904
+  _globals['_KIEZBOXMESSAGE_COREVALUES']._serialized_end=1135
+  _globals['_KIEZBOXMESSAGE_SENSOR']._serialized_start=1137
+  _globals['_KIEZBOXMESSAGE_SENSOR']._serialized_end=1228
+  _globals['_KIEZBOXMESSAGE_SENSORVALUES']._serialized_start=1231
+  _globals['_KIEZBOXMESSAGE_SENSORVALUES']._serialized_end=1549
+  _globals['_KIEZBOXMESSAGE_MODE']._serialized_start=1551
+  _globals['_KIEZBOXMESSAGE_MODE']._serialized_end=1601
 # @@protoc_insertion_point(module_scope)
