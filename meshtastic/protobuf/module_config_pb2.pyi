@@ -9,6 +9,7 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
+import meshtastic.protobuf.kiezbox_control_pb2
 import sys
 import typing
 
@@ -228,7 +229,10 @@ class ModuleConfig(google.protobuf.message.Message):
         POWER_PIN_OVERRIDE_FIELD_NUMBER: builtins.int
         BOX_ID_FIELD_NUMBER: builtins.int
         DIST_ID_FIELD_NUMBER: builtins.int
+        SENS_ID_FIELD_NUMBER: builtins.int
         ROUTER_POWER_FIELD_NUMBER: builtins.int
+        MODE_FIELD_NUMBER: builtins.int
+        DEV_TYPE_FIELD_NUMBER: builtins.int
         enabled: builtins.bool
         """
         Whether the Module is enabled
@@ -249,9 +253,21 @@ class ModuleConfig(google.protobuf.message.Message):
         """
         ID of the district
         """
+        sens_id: builtins.int
+        """
+        ID of the district
+        """
         router_power: builtins.bool
         """
-        Uniq ID of the kiexbox
+        Power state target of the connected router
+        """
+        mode: meshtastic.protobuf.kiezbox_control_pb2.KiezboxMessage.Mode.ValueType
+        """
+        Mode target of the connected router
+        """
+        dev_type: meshtastic.protobuf.kiezbox_control_pb2.KiezboxMessage.DeviceType.ValueType
+        """
+        Mode target of the connected router
         """
         def __init__(
             self,
@@ -261,9 +277,12 @@ class ModuleConfig(google.protobuf.message.Message):
             power_pin_override: builtins.int = ...,
             box_id: builtins.int = ...,
             dist_id: builtins.int = ...,
+            sens_id: builtins.int = ...,
             router_power: builtins.bool = ...,
+            mode: meshtastic.protobuf.kiezbox_control_pb2.KiezboxMessage.Mode.ValueType = ...,
+            dev_type: meshtastic.protobuf.kiezbox_control_pb2.KiezboxMessage.DeviceType.ValueType = ...,
         ) -> None: ...
-        def ClearField(self, field_name: typing.Literal["box_id", b"box_id", "dist_id", b"dist_id", "enabled", b"enabled", "power_pin_override", b"power_pin_override", "router_power", b"router_power", "status_interval", b"status_interval"]) -> None: ...
+        def ClearField(self, field_name: typing.Literal["box_id", b"box_id", "dev_type", b"dev_type", "dist_id", b"dist_id", "enabled", b"enabled", "mode", b"mode", "power_pin_override", b"power_pin_override", "router_power", b"router_power", "sens_id", b"sens_id", "status_interval", b"status_interval"]) -> None: ...
 
     @typing.final
     class NeighborInfoConfig(google.protobuf.message.Message):
