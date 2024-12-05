@@ -43,45 +43,136 @@ class KiezboxMessage(google.protobuf.message.Message):
     normal: KiezboxMessage.Mode.ValueType  # 1
     emergency: KiezboxMessage.Mode.ValueType  # 2
 
+    class _DeviceType:
+        ValueType = typing.NewType("ValueType", builtins.int)
+        V: typing_extensions.TypeAlias = ValueType
+
+    class _DeviceTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[KiezboxMessage._DeviceType.ValueType], builtins.type):
+        DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+        core: KiezboxMessage._DeviceType.ValueType  # 0
+        """A core control module"""
+        sensor: KiezboxMessage._DeviceType.ValueType  # 1
+        """A dedicated sensor box"""
+        display: KiezboxMessage._DeviceType.ValueType  # 2
+        """A info dipslay"""
+
+    class DeviceType(_DeviceType, metaclass=_DeviceTypeEnumTypeWrapper):
+        """Device Type of the kiezbox"""
+
+    core: KiezboxMessage.DeviceType.ValueType  # 0
+    """A core control module"""
+    sensor: KiezboxMessage.DeviceType.ValueType  # 1
+    """A dedicated sensor box"""
+    display: KiezboxMessage.DeviceType.ValueType  # 2
+    """A info dipslay"""
+
     @typing.final
     class Meta(google.protobuf.message.Message):
-        """Meta information identifying the box"""
+        """Meta information identifying the box
+        Also used as tags in the Database
+        """
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         BOX_ID_FIELD_NUMBER: builtins.int
         DIST_ID_FIELD_NUMBER: builtins.int
+        SENS_ID_FIELD_NUMBER: builtins.int
+        DEV_TYPE_FIELD_NUMBER: builtins.int
         box_id: builtins.int
-        """only 8 bit used"""
+        """ID if the Kiezbox
+        only 8 bit used
+        """
         dist_id: builtins.int
-        """only 8 bit used"""
+        """ID of the district the box is assigned to
+        only 8 bit used
+        """
+        sens_id: builtins.int
+        """ID of the sensor if this is a sensor module"""
+        dev_type: global___KiezboxMessage.DeviceType.ValueType
+        """Which type of device the controller should be"""
         def __init__(
             self,
             *,
-            box_id: builtins.int = ...,
-            dist_id: builtins.int = ...,
+            box_id: builtins.int | None = ...,
+            dist_id: builtins.int | None = ...,
+            sens_id: builtins.int | None = ...,
+            dev_type: global___KiezboxMessage.DeviceType.ValueType | None = ...,
         ) -> None: ...
-        def ClearField(self, field_name: typing.Literal["box_id", b"box_id", "dist_id", b"dist_id"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["_box_id", b"_box_id", "_dev_type", b"_dev_type", "_dist_id", b"_dist_id", "_sens_id", b"_sens_id", "box_id", b"box_id", "dev_type", b"dev_type", "dist_id", b"dist_id", "sens_id", b"sens_id"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["_box_id", b"_box_id", "_dev_type", b"_dev_type", "_dist_id", b"_dist_id", "_sens_id", b"_sens_id", "box_id", b"box_id", "dev_type", b"dev_type", "dist_id", b"dist_id", "sens_id", b"sens_id"]) -> None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_box_id", b"_box_id"]) -> typing.Literal["box_id"] | None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_dev_type", b"_dev_type"]) -> typing.Literal["dev_type"] | None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_dist_id", b"_dist_id"]) -> typing.Literal["dist_id"] | None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_sens_id", b"_sens_id"]) -> typing.Literal["sens_id"] | None: ...
 
     @typing.final
-    class Control(google.protobuf.message.Message):
+    class Request(google.protobuf.message.Message):
         """Message to control one or multiple boxes"""
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        MODE_FIELD_NUMBER: builtins.int
-        ROUTER_FIELD_NUMBER: builtins.int
-        mode: global___KiezboxMessage.Mode.ValueType
+        class _Type:
+            ValueType = typing.NewType("ValueType", builtins.int)
+            V: typing_extensions.TypeAlias = ValueType
+
+        class _TypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[KiezboxMessage.Request._Type.ValueType], builtins.type):
+            DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+            Update: KiezboxMessage.Request._Type.ValueType  # 0
+
+        class Type(_Type, metaclass=_TypeEnumTypeWrapper): ...
+        Update: KiezboxMessage.Request.Type.ValueType  # 0
+
+        META_FIELD_NUMBER: builtins.int
+        TYPE_FIELD_NUMBER: builtins.int
+        type: global___KiezboxMessage.Request.Type.ValueType
         @property
-        def router(self) -> global___KiezboxMessage.Router: ...
+        def meta(self) -> global___KiezboxMessage.Meta: ...
+        def __init__(
+            self,
+            *,
+            meta: global___KiezboxMessage.Meta | None = ...,
+            type: global___KiezboxMessage.Request.Type.ValueType | None = ...,
+        ) -> None: ...
+        def HasField(self, field_name: typing.Literal["_type", b"_type", "meta", b"meta", "type", b"type"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["_type", b"_type", "meta", b"meta", "type", b"type"]) -> None: ...
+        def WhichOneof(self, oneof_group: typing.Literal["_type", b"_type"]) -> typing.Literal["type"] | None: ...
+
+    @typing.final
+    class Control(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+        MODE_FIELD_NUMBER: builtins.int
+        UNIX_TIME_FIELD_NUMBER: builtins.int
+        ROUTER_POWER_FIELD_NUMBER: builtins.int
+        BOX_ID_FIELD_NUMBER: builtins.int
+        DIST_ID_FIELD_NUMBER: builtins.int
+        SENS_ID_FIELD_NUMBER: builtins.int
+        STATUS_INTERVAL_FIELD_NUMBER: builtins.int
+        mode: global___KiezboxMessage.Mode.ValueType
+        unix_time: builtins.int
+        router_power: builtins.bool
+        box_id: builtins.int
+        dist_id: builtins.int
+        sens_id: builtins.int
+        status_interval: builtins.int
         def __init__(
             self,
             *,
             mode: global___KiezboxMessage.Mode.ValueType = ...,
-            router: global___KiezboxMessage.Router | None = ...,
+            unix_time: builtins.int = ...,
+            router_power: builtins.bool = ...,
+            box_id: builtins.int = ...,
+            dist_id: builtins.int = ...,
+            sens_id: builtins.int = ...,
+            status_interval: builtins.int = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing.Literal["router", b"router"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing.Literal["mode", b"mode", "router", b"router"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["box_id", b"box_id", "dist_id", b"dist_id", "mode", b"mode", "router_power", b"router_power", "sens_id", b"sens_id", "set", b"set", "status_interval", b"status_interval", "unix_time", b"unix_time"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["box_id", b"box_id", "dist_id", b"dist_id", "mode", b"mode", "router_power", b"router_power", "sens_id", b"sens_id", "set", b"set", "status_interval", b"status_interval", "unix_time", b"unix_time"]) -> None: ...
+        def WhichOneof(self, oneof_group: typing.Literal["set", b"set"]) -> typing.Literal["mode", "unix_time", "router_power", "box_id", "dist_id", "sens_id", "status_interval"] | None: ...
 
     @typing.final
     class Update(google.protobuf.message.Message):
@@ -210,18 +301,39 @@ class KiezboxMessage(google.protobuf.message.Message):
         def __init__(
             self,
             *,
-            temp_out: builtins.int = ...,
-            temp_in: builtins.int = ...,
-            humid_in: builtins.int = ...,
-            solar_voltage: builtins.int = ...,
-            solar_power: builtins.int = ...,
-            solar_energy_day: builtins.int = ...,
-            solar_energy_total: builtins.int = ...,
-            battery_voltage: builtins.int = ...,
-            battery_current: builtins.int = ...,
-            temp_rtc: builtins.int = ...,
+            temp_out: builtins.int | None = ...,
+            temp_in: builtins.int | None = ...,
+            humid_in: builtins.int | None = ...,
+            solar_voltage: builtins.int | None = ...,
+            solar_power: builtins.int | None = ...,
+            solar_energy_day: builtins.int | None = ...,
+            solar_energy_total: builtins.int | None = ...,
+            battery_voltage: builtins.int | None = ...,
+            battery_current: builtins.int | None = ...,
+            temp_rtc: builtins.int | None = ...,
         ) -> None: ...
-        def ClearField(self, field_name: typing.Literal["battery_current", b"battery_current", "battery_voltage", b"battery_voltage", "humid_in", b"humid_in", "solar_energy_day", b"solar_energy_day", "solar_energy_total", b"solar_energy_total", "solar_power", b"solar_power", "solar_voltage", b"solar_voltage", "temp_in", b"temp_in", "temp_out", b"temp_out", "temp_rtc", b"temp_rtc"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["_battery_current", b"_battery_current", "_battery_voltage", b"_battery_voltage", "_humid_in", b"_humid_in", "_solar_energy_day", b"_solar_energy_day", "_solar_energy_total", b"_solar_energy_total", "_solar_power", b"_solar_power", "_solar_voltage", b"_solar_voltage", "_temp_in", b"_temp_in", "_temp_out", b"_temp_out", "_temp_rtc", b"_temp_rtc", "battery_current", b"battery_current", "battery_voltage", b"battery_voltage", "humid_in", b"humid_in", "solar_energy_day", b"solar_energy_day", "solar_energy_total", b"solar_energy_total", "solar_power", b"solar_power", "solar_voltage", b"solar_voltage", "temp_in", b"temp_in", "temp_out", b"temp_out", "temp_rtc", b"temp_rtc"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["_battery_current", b"_battery_current", "_battery_voltage", b"_battery_voltage", "_humid_in", b"_humid_in", "_solar_energy_day", b"_solar_energy_day", "_solar_energy_total", b"_solar_energy_total", "_solar_power", b"_solar_power", "_solar_voltage", b"_solar_voltage", "_temp_in", b"_temp_in", "_temp_out", b"_temp_out", "_temp_rtc", b"_temp_rtc", "battery_current", b"battery_current", "battery_voltage", b"battery_voltage", "humid_in", b"humid_in", "solar_energy_day", b"solar_energy_day", "solar_energy_total", b"solar_energy_total", "solar_power", b"solar_power", "solar_voltage", b"solar_voltage", "temp_in", b"temp_in", "temp_out", b"temp_out", "temp_rtc", b"temp_rtc"]) -> None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_battery_current", b"_battery_current"]) -> typing.Literal["battery_current"] | None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_battery_voltage", b"_battery_voltage"]) -> typing.Literal["battery_voltage"] | None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_humid_in", b"_humid_in"]) -> typing.Literal["humid_in"] | None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_solar_energy_day", b"_solar_energy_day"]) -> typing.Literal["solar_energy_day"] | None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_solar_energy_total", b"_solar_energy_total"]) -> typing.Literal["solar_energy_total"] | None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_solar_power", b"_solar_power"]) -> typing.Literal["solar_power"] | None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_solar_voltage", b"_solar_voltage"]) -> typing.Literal["solar_voltage"] | None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_temp_in", b"_temp_in"]) -> typing.Literal["temp_in"] | None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_temp_out", b"_temp_out"]) -> typing.Literal["temp_out"] | None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_temp_rtc", b"_temp_rtc"]) -> typing.Literal["temp_rtc"] | None: ...
 
     @typing.final
     class Sensor(google.protobuf.message.Message):
@@ -229,20 +341,16 @@ class KiezboxMessage(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        SENS_ID_FIELD_NUMBER: builtins.int
         VALUES_FIELD_NUMBER: builtins.int
-        sens_id: builtins.int
-        """ID of the sensor"""
         @property
         def values(self) -> global___KiezboxMessage.SensorValues: ...
         def __init__(
             self,
             *,
-            sens_id: builtins.int = ...,
             values: global___KiezboxMessage.SensorValues | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["values", b"values"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing.Literal["sens_id", b"sens_id", "values", b"values"]) -> None: ...
+        def ClearField(self, field_name: typing.Literal["values", b"values"]) -> None: ...
 
     @typing.final
     class SensorValues(google.protobuf.message.Message):
@@ -265,7 +373,7 @@ class KiezboxMessage(google.protobuf.message.Message):
         humid_main: builtins.int
         """Humidity (%)"""
         pressure: builtins.int
-        """Pressue (??)"""
+        """Pressue (Pa)"""
         air_quality: builtins.int
         """Air Quality (??)"""
         part_pm_2_5: builtins.int
