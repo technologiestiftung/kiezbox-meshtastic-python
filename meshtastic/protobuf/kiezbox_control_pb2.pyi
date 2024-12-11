@@ -362,8 +362,8 @@ class KiezboxMessage(google.protobuf.message.Message):
         HUMID_MAIN_FIELD_NUMBER: builtins.int
         PRESSURE_FIELD_NUMBER: builtins.int
         AIR_QUALITY_FIELD_NUMBER: builtins.int
-        PART_PM_2_5_FIELD_NUMBER: builtins.int
-        PART_PM_10_FIELD_NUMBER: builtins.int
+        PART_PM25_FIELD_NUMBER: builtins.int
+        PART_PM10_FIELD_NUMBER: builtins.int
         NOISE_FIELD_NUMBER: builtins.int
         TEMP_RTC_FIELD_NUMBER: builtins.int
         temp_main: builtins.int
@@ -376,11 +376,11 @@ class KiezboxMessage(google.protobuf.message.Message):
         """Pressue (Pa)"""
         air_quality: builtins.int
         """Air Quality (??)"""
-        part_pm_2_5: builtins.int
+        part_pm25: builtins.int
         """Particles
         particles 1um (??)
         """
-        part_pm_10: builtins.int
+        part_pm10: builtins.int
         """particles 2.5um (??)"""
         noise: builtins.int
         """Noise (??)"""
@@ -393,13 +393,13 @@ class KiezboxMessage(google.protobuf.message.Message):
             humid_main: builtins.int | None = ...,
             pressure: builtins.int | None = ...,
             air_quality: builtins.int | None = ...,
-            part_pm_2_5: builtins.int | None = ...,
-            part_pm_10: builtins.int | None = ...,
+            part_pm25: builtins.int | None = ...,
+            part_pm10: builtins.int | None = ...,
             noise: builtins.int | None = ...,
             temp_rtc: builtins.int | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing.Literal["_air_quality", b"_air_quality", "_humid_main", b"_humid_main", "_noise", b"_noise", "_part_pm_10", b"_part_pm_10", "_part_pm_2_5", b"_part_pm_2_5", "_pressure", b"_pressure", "_temp_main", b"_temp_main", "_temp_rtc", b"_temp_rtc", "air_quality", b"air_quality", "humid_main", b"humid_main", "noise", b"noise", "part_pm_10", b"part_pm_10", "part_pm_2_5", b"part_pm_2_5", "pressure", b"pressure", "temp_main", b"temp_main", "temp_rtc", b"temp_rtc"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing.Literal["_air_quality", b"_air_quality", "_humid_main", b"_humid_main", "_noise", b"_noise", "_part_pm_10", b"_part_pm_10", "_part_pm_2_5", b"_part_pm_2_5", "_pressure", b"_pressure", "_temp_main", b"_temp_main", "_temp_rtc", b"_temp_rtc", "air_quality", b"air_quality", "humid_main", b"humid_main", "noise", b"noise", "part_pm_10", b"part_pm_10", "part_pm_2_5", b"part_pm_2_5", "pressure", b"pressure", "temp_main", b"temp_main", "temp_rtc", b"temp_rtc"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["_air_quality", b"_air_quality", "_humid_main", b"_humid_main", "_noise", b"_noise", "_part_pm10", b"_part_pm10", "_part_pm25", b"_part_pm25", "_pressure", b"_pressure", "_temp_main", b"_temp_main", "_temp_rtc", b"_temp_rtc", "air_quality", b"air_quality", "humid_main", b"humid_main", "noise", b"noise", "part_pm10", b"part_pm10", "part_pm25", b"part_pm25", "pressure", b"pressure", "temp_main", b"temp_main", "temp_rtc", b"temp_rtc"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["_air_quality", b"_air_quality", "_humid_main", b"_humid_main", "_noise", b"_noise", "_part_pm10", b"_part_pm10", "_part_pm25", b"_part_pm25", "_pressure", b"_pressure", "_temp_main", b"_temp_main", "_temp_rtc", b"_temp_rtc", "air_quality", b"air_quality", "humid_main", b"humid_main", "noise", b"noise", "part_pm10", b"part_pm10", "part_pm25", b"part_pm25", "pressure", b"pressure", "temp_main", b"temp_main", "temp_rtc", b"temp_rtc"]) -> None: ...
         @typing.overload
         def WhichOneof(self, oneof_group: typing.Literal["_air_quality", b"_air_quality"]) -> typing.Literal["air_quality"] | None: ...
         @typing.overload
@@ -407,9 +407,9 @@ class KiezboxMessage(google.protobuf.message.Message):
         @typing.overload
         def WhichOneof(self, oneof_group: typing.Literal["_noise", b"_noise"]) -> typing.Literal["noise"] | None: ...
         @typing.overload
-        def WhichOneof(self, oneof_group: typing.Literal["_part_pm_10", b"_part_pm_10"]) -> typing.Literal["part_pm_10"] | None: ...
+        def WhichOneof(self, oneof_group: typing.Literal["_part_pm10", b"_part_pm10"]) -> typing.Literal["part_pm10"] | None: ...
         @typing.overload
-        def WhichOneof(self, oneof_group: typing.Literal["_part_pm_2_5", b"_part_pm_2_5"]) -> typing.Literal["part_pm_2_5"] | None: ...
+        def WhichOneof(self, oneof_group: typing.Literal["_part_pm25", b"_part_pm25"]) -> typing.Literal["part_pm25"] | None: ...
         @typing.overload
         def WhichOneof(self, oneof_group: typing.Literal["_pressure", b"_pressure"]) -> typing.Literal["pressure"] | None: ...
         @typing.overload
