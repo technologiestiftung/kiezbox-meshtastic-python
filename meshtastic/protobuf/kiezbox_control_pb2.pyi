@@ -366,6 +366,7 @@ class KiezboxMessage(google.protobuf.message.Message):
         PART_PM10_FIELD_NUMBER: builtins.int
         NOISE_FIELD_NUMBER: builtins.int
         TEMP_RTC_FIELD_NUMBER: builtins.int
+        BATTERY_VOLTAGE_FIELD_NUMBER: builtins.int
         temp_main: builtins.int
         """[ BME Sensor ]
         Temperature (C)
@@ -386,6 +387,8 @@ class KiezboxMessage(google.protobuf.message.Message):
         """Noise (??)"""
         temp_rtc: builtins.int
         """Temperature of the rtc (C)"""
+        battery_voltage: builtins.int
+        """Voltage of the (main) battery (V)"""
         def __init__(
             self,
             *,
@@ -397,11 +400,14 @@ class KiezboxMessage(google.protobuf.message.Message):
             part_pm10: builtins.int | None = ...,
             noise: builtins.int | None = ...,
             temp_rtc: builtins.int | None = ...,
+            battery_voltage: builtins.int | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing.Literal["_air_quality", b"_air_quality", "_humid_main", b"_humid_main", "_noise", b"_noise", "_part_pm10", b"_part_pm10", "_part_pm25", b"_part_pm25", "_pressure", b"_pressure", "_temp_main", b"_temp_main", "_temp_rtc", b"_temp_rtc", "air_quality", b"air_quality", "humid_main", b"humid_main", "noise", b"noise", "part_pm10", b"part_pm10", "part_pm25", b"part_pm25", "pressure", b"pressure", "temp_main", b"temp_main", "temp_rtc", b"temp_rtc"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing.Literal["_air_quality", b"_air_quality", "_humid_main", b"_humid_main", "_noise", b"_noise", "_part_pm10", b"_part_pm10", "_part_pm25", b"_part_pm25", "_pressure", b"_pressure", "_temp_main", b"_temp_main", "_temp_rtc", b"_temp_rtc", "air_quality", b"air_quality", "humid_main", b"humid_main", "noise", b"noise", "part_pm10", b"part_pm10", "part_pm25", b"part_pm25", "pressure", b"pressure", "temp_main", b"temp_main", "temp_rtc", b"temp_rtc"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["_air_quality", b"_air_quality", "_battery_voltage", b"_battery_voltage", "_humid_main", b"_humid_main", "_noise", b"_noise", "_part_pm10", b"_part_pm10", "_part_pm25", b"_part_pm25", "_pressure", b"_pressure", "_temp_main", b"_temp_main", "_temp_rtc", b"_temp_rtc", "air_quality", b"air_quality", "battery_voltage", b"battery_voltage", "humid_main", b"humid_main", "noise", b"noise", "part_pm10", b"part_pm10", "part_pm25", b"part_pm25", "pressure", b"pressure", "temp_main", b"temp_main", "temp_rtc", b"temp_rtc"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["_air_quality", b"_air_quality", "_battery_voltage", b"_battery_voltage", "_humid_main", b"_humid_main", "_noise", b"_noise", "_part_pm10", b"_part_pm10", "_part_pm25", b"_part_pm25", "_pressure", b"_pressure", "_temp_main", b"_temp_main", "_temp_rtc", b"_temp_rtc", "air_quality", b"air_quality", "battery_voltage", b"battery_voltage", "humid_main", b"humid_main", "noise", b"noise", "part_pm10", b"part_pm10", "part_pm25", b"part_pm25", "pressure", b"pressure", "temp_main", b"temp_main", "temp_rtc", b"temp_rtc"]) -> None: ...
         @typing.overload
         def WhichOneof(self, oneof_group: typing.Literal["_air_quality", b"_air_quality"]) -> typing.Literal["air_quality"] | None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_battery_voltage", b"_battery_voltage"]) -> typing.Literal["battery_voltage"] | None: ...
         @typing.overload
         def WhichOneof(self, oneof_group: typing.Literal["_humid_main", b"_humid_main"]) -> typing.Literal["humid_main"] | None: ...
         @typing.overload
