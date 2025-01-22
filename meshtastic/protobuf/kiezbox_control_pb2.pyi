@@ -55,6 +55,8 @@ class KiezboxMessage(google.protobuf.message.Message):
         """A dedicated sensor box"""
         display: KiezboxMessage._DeviceType.ValueType  # 2
         """A info dipslay"""
+        button: KiezboxMessage._DeviceType.ValueType  # 3
+        """The emergency button"""
 
     class DeviceType(_DeviceType, metaclass=_DeviceTypeEnumTypeWrapper):
         """Device Type of the kiezbox"""
@@ -65,6 +67,8 @@ class KiezboxMessage(google.protobuf.message.Message):
     """A dedicated sensor box"""
     display: KiezboxMessage.DeviceType.ValueType  # 2
     """A info dipslay"""
+    button: KiezboxMessage.DeviceType.ValueType  # 3
+    """The emergency button"""
 
     @typing.final
     class Meta(google.protobuf.message.Message):

@@ -234,6 +234,7 @@ class ModuleConfig(google.protobuf.message.Message):
         MODE_FIELD_NUMBER: builtins.int
         DEV_TYPE_FIELD_NUMBER: builtins.int
         SDS_WARMUP_TIME_FIELD_NUMBER: builtins.int
+        BUTTON_ID_FIELD_NUMBER: builtins.int
         enabled: builtins.bool
         """
         Whether the Module is enabled
@@ -256,7 +257,7 @@ class ModuleConfig(google.protobuf.message.Message):
         """
         sens_id: builtins.int
         """
-        ID of the district
+        ID of the sensor box
         """
         router_power: builtins.bool
         """
@@ -274,6 +275,10 @@ class ModuleConfig(google.protobuf.message.Message):
         """
         Sets the warmup time for the sds dust sensor
         """
+        button_id: builtins.int
+        """
+        ID of the emergency button
+        """
         def __init__(
             self,
             *,
@@ -287,8 +292,9 @@ class ModuleConfig(google.protobuf.message.Message):
             mode: meshtastic.protobuf.kiezbox_control_pb2.KiezboxMessage.Mode.ValueType = ...,
             dev_type: meshtastic.protobuf.kiezbox_control_pb2.KiezboxMessage.DeviceType.ValueType = ...,
             sds_warmup_time: builtins.int = ...,
+            button_id: builtins.int = ...,
         ) -> None: ...
-        def ClearField(self, field_name: typing.Literal["box_id", b"box_id", "dev_type", b"dev_type", "dist_id", b"dist_id", "enabled", b"enabled", "mode", b"mode", "power_pin_override", b"power_pin_override", "router_power", b"router_power", "sds_warmup_time", b"sds_warmup_time", "sens_id", b"sens_id", "status_interval", b"status_interval"]) -> None: ...
+        def ClearField(self, field_name: typing.Literal["box_id", b"box_id", "button_id", b"button_id", "dev_type", b"dev_type", "dist_id", b"dist_id", "enabled", b"enabled", "mode", b"mode", "power_pin_override", b"power_pin_override", "router_power", b"router_power", "sds_warmup_time", b"sds_warmup_time", "sens_id", b"sens_id", "status_interval", b"status_interval"]) -> None: ...
 
     @typing.final
     class NeighborInfoConfig(google.protobuf.message.Message):
