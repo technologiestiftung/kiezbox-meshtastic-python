@@ -70,6 +70,35 @@ class KiezboxMessage(google.protobuf.message.Message):
     button: KiezboxMessage.DeviceType.ValueType  # 3
     """The emergency button"""
 
+    class _EmergencyType:
+        ValueType = typing.NewType("ValueType", builtins.int)
+        V: typing_extensions.TypeAlias = ValueType
+
+    class _EmergencyTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[KiezboxMessage._EmergencyType.ValueType], builtins.type):
+        DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+        medical: KiezboxMessage._EmergencyType.ValueType  # 0
+        """Medical emergency"""
+        fire: KiezboxMessage._EmergencyType.ValueType  # 1
+        """Fire emergency"""
+        crime: KiezboxMessage._EmergencyType.ValueType  # 2
+        """Crime emergency"""
+        sick: KiezboxMessage._EmergencyType.ValueType  # 3
+        """Sick emergency"""
+        help: KiezboxMessage._EmergencyType.ValueType  # 4
+        """Help emergency"""
+
+    class EmergencyType(_EmergencyType, metaclass=_EmergencyTypeEnumTypeWrapper): ...
+    medical: KiezboxMessage.EmergencyType.ValueType  # 0
+    """Medical emergency"""
+    fire: KiezboxMessage.EmergencyType.ValueType  # 1
+    """Fire emergency"""
+    crime: KiezboxMessage.EmergencyType.ValueType  # 2
+    """Crime emergency"""
+    sick: KiezboxMessage.EmergencyType.ValueType  # 3
+    """Sick emergency"""
+    help: KiezboxMessage.EmergencyType.ValueType  # 4
+    """Help emergency"""
+
     @typing.final
     class Meta(google.protobuf.message.Message):
         """Meta information identifying the box
@@ -427,22 +456,56 @@ class KiezboxMessage(google.protobuf.message.Message):
         @typing.overload
         def WhichOneof(self, oneof_group: typing.Literal["_temp_rtc", b"_temp_rtc"]) -> typing.Literal["temp_rtc"] | None: ...
 
+    @typing.final
+    class Emergency(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+        TYPE_FIELD_NUMBER: builtins.int
+        BUTTON_ID_FIELD_NUMBER: builtins.int
+        UNIX_TIME_FIELD_NUMBER: builtins.int
+        MESSAGE_FIELD_NUMBER: builtins.int
+        type: global___KiezboxMessage.EmergencyType.ValueType
+        """Type of the emergency"""
+        button_id: builtins.int
+        """ID of the button sending the emergency"""
+        unix_time: builtins.int
+        """Unix timestamp ( in seconds ), when the emergency happend"""
+        message: builtins.str
+        """Optional message describing what happened"""
+        def __init__(
+            self,
+            *,
+            type: global___KiezboxMessage.EmergencyType.ValueType = ...,
+            button_id: builtins.int = ...,
+            unix_time: builtins.int = ...,
+            message: builtins.str | None = ...,
+        ) -> None: ...
+        def HasField(self, field_name: typing.Literal["_message", b"_message", "message", b"message"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["_message", b"_message", "button_id", b"button_id", "message", b"message", "type", b"type", "unix_time", b"unix_time"]) -> None: ...
+        def WhichOneof(self, oneof_group: typing.Literal["_message", b"_message"]) -> typing.Literal["message"] | None: ...
+
     UPDATE_FIELD_NUMBER: builtins.int
     CONTROL_FIELD_NUMBER: builtins.int
+    DISTRESS_FIELD_NUMBER: builtins.int
     @property
     def update(self) -> global___KiezboxMessage.Update: ...
     @property
     def control(self) -> global___KiezboxMessage.Control: ...
+    @property
+    def distress(self) -> global___KiezboxMessage.Emergency: ...
     def __init__(
         self,
         *,
         update: global___KiezboxMessage.Update | None = ...,
         control: global___KiezboxMessage.Control | None = ...,
+        distress: global___KiezboxMessage.Emergency | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["_control", b"_control", "_update", b"_update", "control", b"control", "update", b"update"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["_control", b"_control", "_update", b"_update", "control", b"control", "update", b"update"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["_control", b"_control", "_distress", b"_distress", "_update", b"_update", "control", b"control", "distress", b"distress", "update", b"update"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["_control", b"_control", "_distress", b"_distress", "_update", b"_update", "control", b"control", "distress", b"distress", "update", b"update"]) -> None: ...
     @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal["_control", b"_control"]) -> typing.Literal["control"] | None: ...
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal["_distress", b"_distress"]) -> typing.Literal["distress"] | None: ...
     @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal["_update", b"_update"]) -> typing.Literal["update"] | None: ...
 
