@@ -217,8 +217,11 @@ class KiezboxMessage(google.protobuf.message.Message):
         UNIX_TIME_FIELD_NUMBER: builtins.int
         CORE_FIELD_NUMBER: builtins.int
         SENSOR_FIELD_NUMBER: builtins.int
+        ARRIVAL_TIME_FIELD_NUMBER: builtins.int
         unix_time: builtins.int
         """Unix timestamp ( in seconds ), when the measurements were taken"""
+        arrival_time: builtins.int
+        """Unix timestamp ( in seconds ), when the measurements arrived at the database gateway"""
         @property
         def meta(self) -> global___KiezboxMessage.Meta: ...
         @property
@@ -232,9 +235,12 @@ class KiezboxMessage(google.protobuf.message.Message):
             unix_time: builtins.int = ...,
             core: global___KiezboxMessage.Core | None = ...,
             sensor: global___KiezboxMessage.Sensor | None = ...,
+            arrival_time: builtins.int | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing.Literal["_core", b"_core", "_sensor", b"_sensor", "core", b"core", "meta", b"meta", "sensor", b"sensor"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing.Literal["_core", b"_core", "_sensor", b"_sensor", "core", b"core", "meta", b"meta", "sensor", b"sensor", "unix_time", b"unix_time"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["_arrival_time", b"_arrival_time", "_core", b"_core", "_sensor", b"_sensor", "arrival_time", b"arrival_time", "core", b"core", "meta", b"meta", "sensor", b"sensor"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["_arrival_time", b"_arrival_time", "_core", b"_core", "_sensor", b"_sensor", "arrival_time", b"arrival_time", "core", b"core", "meta", b"meta", "sensor", b"sensor", "unix_time", b"unix_time"]) -> None: ...
+        @typing.overload
+        def WhichOneof(self, oneof_group: typing.Literal["_arrival_time", b"_arrival_time"]) -> typing.Literal["arrival_time"] | None: ...
         @typing.overload
         def WhichOneof(self, oneof_group: typing.Literal["_core", b"_core"]) -> typing.Literal["core"] | None: ...
         @typing.overload
