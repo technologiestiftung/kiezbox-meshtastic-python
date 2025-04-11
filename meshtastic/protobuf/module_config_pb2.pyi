@@ -246,6 +246,7 @@ class ModuleConfig(google.protobuf.message.Message):
         power_pin_override: builtins.int
         """
         Override the default power pin
+        DEPRECATED! power pin is fixed for now
         """
         box_id: builtins.int
         """
@@ -265,11 +266,11 @@ class ModuleConfig(google.protobuf.message.Message):
         """
         mode: meshtastic.protobuf.kiezbox_control_pb2.KiezboxMessage.Mode.ValueType
         """
-        Mode target of the connected router
+        Mode target for this kiezbox core (and connected router)
         """
         dev_type: meshtastic.protobuf.kiezbox_control_pb2.KiezboxMessage.DeviceType.ValueType
         """
-        Mode target of the connected router
+        Device type of this kiezbox
         """
         sds_warmup_time: builtins.int
         """

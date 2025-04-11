@@ -144,7 +144,10 @@ class KiezboxMessage(google.protobuf.message.Message):
 
     @typing.final
     class Request(google.protobuf.message.Message):
-        """Message to control one or multiple boxes"""
+        """Messages to control one or multiple boxes
+        The meta field is used to filter for boxes to target
+        Request messages can be used to request a specific response/update from a set of boxes
+        """
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -176,8 +179,11 @@ class KiezboxMessage(google.protobuf.message.Message):
 
     @typing.final
     class Control(google.protobuf.message.Message):
+        """Control messages can be used to set a variable or other parameter for a set of boxes"""
+
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+        META_FIELD_NUMBER: builtins.int
         MODE_FIELD_NUMBER: builtins.int
         UNIX_TIME_FIELD_NUMBER: builtins.int
         ROUTER_POWER_FIELD_NUMBER: builtins.int
@@ -185,6 +191,10 @@ class KiezboxMessage(google.protobuf.message.Message):
         DIST_ID_FIELD_NUMBER: builtins.int
         SENS_ID_FIELD_NUMBER: builtins.int
         STATUS_INTERVAL_FIELD_NUMBER: builtins.int
+        SDS_WARMUP_TIME_FIELD_NUMBER: builtins.int
+        ENABLED_FIELD_NUMBER: builtins.int
+        DEV_TYPE_FIELD_NUMBER: builtins.int
+        BUTTON_ID_FIELD_NUMBER: builtins.int
         mode: global___KiezboxMessage.Mode.ValueType
         unix_time: builtins.int
         router_power: builtins.bool
@@ -192,9 +202,16 @@ class KiezboxMessage(google.protobuf.message.Message):
         dist_id: builtins.int
         sens_id: builtins.int
         status_interval: builtins.int
+        sds_warmup_time: builtins.int
+        enabled: builtins.bool
+        dev_type: global___KiezboxMessage.DeviceType.ValueType
+        button_id: builtins.int
+        @property
+        def meta(self) -> global___KiezboxMessage.Meta: ...
         def __init__(
             self,
             *,
+            meta: global___KiezboxMessage.Meta | None = ...,
             mode: global___KiezboxMessage.Mode.ValueType = ...,
             unix_time: builtins.int = ...,
             router_power: builtins.bool = ...,
@@ -202,10 +219,14 @@ class KiezboxMessage(google.protobuf.message.Message):
             dist_id: builtins.int = ...,
             sens_id: builtins.int = ...,
             status_interval: builtins.int = ...,
+            sds_warmup_time: builtins.int = ...,
+            enabled: builtins.bool = ...,
+            dev_type: global___KiezboxMessage.DeviceType.ValueType = ...,
+            button_id: builtins.int = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing.Literal["box_id", b"box_id", "dist_id", b"dist_id", "mode", b"mode", "router_power", b"router_power", "sens_id", b"sens_id", "set", b"set", "status_interval", b"status_interval", "unix_time", b"unix_time"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing.Literal["box_id", b"box_id", "dist_id", b"dist_id", "mode", b"mode", "router_power", b"router_power", "sens_id", b"sens_id", "set", b"set", "status_interval", b"status_interval", "unix_time", b"unix_time"]) -> None: ...
-        def WhichOneof(self, oneof_group: typing.Literal["set", b"set"]) -> typing.Literal["mode", "unix_time", "router_power", "box_id", "dist_id", "sens_id", "status_interval"] | None: ...
+        def HasField(self, field_name: typing.Literal["box_id", b"box_id", "button_id", b"button_id", "dev_type", b"dev_type", "dist_id", b"dist_id", "enabled", b"enabled", "meta", b"meta", "mode", b"mode", "router_power", b"router_power", "sds_warmup_time", b"sds_warmup_time", "sens_id", b"sens_id", "set", b"set", "status_interval", b"status_interval", "unix_time", b"unix_time"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["box_id", b"box_id", "button_id", b"button_id", "dev_type", b"dev_type", "dist_id", b"dist_id", "enabled", b"enabled", "meta", b"meta", "mode", b"mode", "router_power", b"router_power", "sds_warmup_time", b"sds_warmup_time", "sens_id", b"sens_id", "set", b"set", "status_interval", b"status_interval", "unix_time", b"unix_time"]) -> None: ...
+        def WhichOneof(self, oneof_group: typing.Literal["set", b"set"]) -> typing.Literal["mode", "unix_time", "router_power", "box_id", "dist_id", "sens_id", "status_interval", "sds_warmup_time", "enabled", "dev_type", "button_id"] | None: ...
 
     @typing.final
     class Update(google.protobuf.message.Message):
