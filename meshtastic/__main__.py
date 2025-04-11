@@ -587,19 +587,22 @@ def onConnected(interface):
                         rhc.watchGPIOs(args.dest, bitmask)
                         time.sleep(1)
 
-        if args.kb_watch:
-            if args.dest == BROADCAST_ADDR:
-                meshtastic.util.our_exit("Warning: Must use a destination node ID.")
-            else:
-                kbc = kiezbox_control.KiezboxControlClient(interface)
-
-                if args.kb_watch:
-                    print(
-                            f"Watching status messages. Press ctrl-c to exit"
-                    )
-                    while True:
-                        kbc.watchstatus(args.dest)
-                        time.sleep(10)
+        if args.kb_set:
+            closeNow = False
+            waitForAckNak = True
+            #TODO: check how we can send the kb-set messages as boardcast?
+            node = interface.getNode(args.dest, False, **getNode_kwargs)
+            kbc = kiezbox_control.KiezboxControlClient(interface)
+            meta = {}
+            if args.kb_box_id:
+                meta["box_id"] = args.kb_box_id
+            if args.kb_dist_id:
+                meta["dist_id"] = args.kb_dist_id
+            if args.kb_sens_id:
+                meta["sens_id"] = args.kb_sens_id
+            if args.kb_dev_type:
+                meta["dev_type"] = args.kb_dev_type
+            kbc.set_value(node.nodeNum,args.kb_set[0],args.kb_set[1],meta)
 
         # handle settings
         if args.set:
@@ -1968,7 +1971,19 @@ def initParser():
         "Kiezbo Control", "Arguments related to the Kiezbox Control module"
     )
     kiezboxControlArgs.add_argument(
-        "--kb-watch", help="Start watching status messages"
+        "--kb-set", nargs=2, help="Set a specifiv kiezbox variable to value"
+    )
+    kiezboxControlArgs.add_argument(
+        "--kb-box-id", help="Filter message targets by box id"
+    )
+    kiezboxControlArgs.add_argument(
+        "--kb-dist-id", help="Filter message targets by district id"
+    )
+    kiezboxControlArgs.add_argument(
+        "--kb-sens-id", help="Filter message targets by sensor id"
+    )
+    kiezboxControlArgs.add_argument(
+        "--kb-dev-type", help="Filter message targets by device type"
     )
 
     have_tunnel = platform.system() == "Linux"
